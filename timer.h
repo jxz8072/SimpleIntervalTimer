@@ -10,5 +10,8 @@ struct CountdownParams{
 };
 
 void countdown(CountdownParams context);
+void countup();
+void stopTimer();
+void pauseTimer(bool setPause);
 
 #endif

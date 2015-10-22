@@ -3,7 +3,8 @@
 Here's a simple command line interval countdown timer application,
 which turned out to be a bit more difficult than I originally thought. 
 I created this application in an attempt to self-study C++ on a mac. 
-Here are some of the lessons I learned when creating this application:
+Here is an ongoing list of the lessons I learned when creating this 
+application:
 
 + Sound is a lot more complicated to play using C++ (when compared to
   C# or Python).I had to download and install SDL. And even then, I
@@ -29,5 +30,19 @@ Here are some of the lessons I learned when creating this application:
   values (18446744073709551615 and 4294967295, respectively). stringUtil.cpp
   shows the location of where this came into play, and I believe the values
   are there because I'm using a 64-bit based mac. 
+
++ Join vs Detach: Calling thread.join will cause the main thread (or whatever
+  the next thread is) to pause execution until the thread is done executing. 
+  Calling thread.detach will cause the thread to execute independently of any 
+  other threads. This came into play when I was creating the pause function 
+  of the countup timer. The countup thread using join couldn't work because I 
+  needed the cin.get() to tell when to stop the thread, but the main thread
+  couldn't process the cin.get() because it was waiting for the countup thread
+  to complete (which would never complete since it needed user input). Detach
+  was the best option.
+
++ atomic keyword for data types are used for sharing data between threads. I
+  need to study up more because I can't visualize the concept just yet
+  (i.e. bool vs atomic_bool)  
 
 Maybe I'll add a front-end later, I've been meaning to learn Qt...
